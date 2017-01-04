@@ -42,9 +42,43 @@ class TopViewController: BaseViewController {
         self.addChildViewController(pagingMenuController)
         self.listView.addSubview(pagingMenuController.view)
         pagingMenuController.didMove(toParentViewController: self)
-        
 
-        let db = FMDatabase(path: "")
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)
+        let path = paths[0] + "/" + "test3.db"
+        print(path)
+        let db = FMDatabase(path: path)
+//        db?.setKey("passphrase")
+        
+        
+        let isopne = db?.open()
+        print(isopne)
+//        let key = ["BIGSecret", CFString];
+        let key:String = "passphrase"
+        
+        let input = "passphrase"
+        let data = input.data(using: .utf8)!
+        let cString = input.cString(using: .utf8)!
+        
+        let iskey = db?.setKey("x'2DD29CA851E7B56E4697B0E1F08507293D761A05CE4D1B628663F411A8086D99'")
+        print(iskey)
+        
+        
+        let quiz_sql = "select * from test;"
+        let quiz_results = db?.executeQuery(quiz_sql, withArgumentsIn: nil)
+        
+        print(quiz_results as Any)
+        
+        while (quiz_results?.next())! {
+            let a = quiz_results?.string(forColumn: "a")
+            let b = quiz_results?.string(forColumn: "b")
+            let c = quiz_results?.string(forColumn: "c")
+            
+            print(a! + " " + b! + " " + c!)
+        }
+        
+        db?.close()
+        
+        
         // ドキュメントディレクトリの「パス」（String型）
 //        let documentDirPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
         // ドキュメントディレクトリの「ファイルURL」（URL型）
