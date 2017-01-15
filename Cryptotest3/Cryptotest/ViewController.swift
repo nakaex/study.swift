@@ -8,6 +8,24 @@
 import CryptoSwift
 import UIKit
 
+//Alamofire.request("https://my-wordpress-nakaex.c9users.io/wp-webapp/index.php/" + urlstring).responseJSON(completionHandler: { response in
+//    //            print(response.request)  // original URL request
+//    //            print(response.response) // HTTP URL response
+//    //            print(response.data)     // server data
+//    //            print(response.result)   // result of response serialization
+//    
+//    switch response.result {
+//    case .success(let value):
+//        self.success(value as AnyObject)
+//        
+//    case .failure(let error):
+//        self.failure(error as AnyObject)
+//    }
+//})
+
+//let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+//DispatchQueue.main.asyncAfter(deadline: delayTime) {
+
 class ViewController: UIViewController {
     
     var text:NSData!
